@@ -6,8 +6,10 @@ import ExpenseTotal from './components/ExpenseTotal';
 import ExpenseList from './components/ExpenseList';
 import AddExpenseForm from './components/AddExpenseForm';
 import { AppProvider } from './context/AppContext';
+import BarChart from './BarChart'
 
 const App = () => {
+	<script src="https://d3js.org/d3.v7.min.js"></script>
 	return (
 		<AppProvider>
 			<div className='container'>
@@ -36,6 +38,11 @@ const App = () => {
 					</div>
 				</div>
 			</div>
+			( <BarChart 
+				data={[12, 5, 6, 6, 9, 10]}
+				width={700}
+				height={300}
+			/> )
 		</AppProvider>
 	);
 };
