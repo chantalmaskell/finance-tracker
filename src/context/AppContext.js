@@ -1,4 +1,6 @@
 import { createContext, useReducer } from "react";
+import { useEffect } from 'react';
+import fetchExpenses from '../components/FetchExpenses';
 
 const AppReducer = (state, action) => {
 	switch (action.type) {
@@ -14,6 +16,11 @@ const AppReducer = (state, action) => {
 					(expense) => expense.id !== action.payload
 				),
 			};
+		case 'SET_EXPENSES':
+			return {
+				...state,
+				expenses: action.payload
+			};
 		default:
 			return state;
 	}
@@ -22,9 +29,9 @@ const AppReducer = (state, action) => {
 const initialState = {
 	budget: 1000,
 	expenses: [
-		{ id: 12, name: 'shopping', cost: 40 },
-		{ id: 13, name: 'holiday', cost: 400 },
-		{ id: 14, name: 'car service', cost: 50 },
+		{ id: 12, name: 'Netflix', cost: 10.99 },
+		{ id: 13, name: 'Council tax', cost: 170 },
+		{ id: 14, name: 'Rent', cost: 525 },
 	],
 };
 
@@ -33,12 +40,21 @@ export const AppContext = createContext();
 export const AppProvider = (props) => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
+	useEffect(() => {
+		fetchExpenses(dispatch);
+	  }, []);
+
+	  const removeExpense = (expenseId) => {
+		dispatch({ type: 'DELETE_EXPENSE', payload: expenseId });
+	  };
+
 	return (
 		<AppContext.Provider
 			value={{
 				budget: state.budget,
 				expenses: state.expenses,
 				dispatch,
+				removeExpense,
 			}}
 		>
 			{props.children}

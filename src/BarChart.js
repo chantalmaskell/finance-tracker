@@ -1,38 +1,50 @@
-import React, { Component } from 'react'
-import * as d3 from 'd3'
+import React, { Component } from 'react';
+import * as d3 from 'd3';
+import fetchExpenseCost from './components/FetchExpenseCost';
 
 class BarChart extends Component {
-    componentDidMount() {
-        this.drawChart();
-    }
-    drawChart() {
-        const data = [12, 5, 6, 6, 9, 10];
+  componentDidMount() {
+    this.fetchDataAndDrawChart();
+  }
 
-        const svg = d3.select("body")
-                    .append("svg")
-                    .attr("width", 700)
-                    .attr("height", 300);
-
-        svg.selectAll("rect")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", (d, i) => i * 70)
-            .attr("y", (d, i) => 300 - 10 * d)
-            .attr("width", 65)
-            .attr("height", (d, i) => d * 10)
-            .attr("fill", "green");
-
-            svg.selectAll("text")
-            .data(data)
-            .enter()
-            .append("text")
-            .text((d) => d)
-            .attr("x", (d, i) => i * 70)
-            .attr("y", (d, i) => 300 - (10 * d) - 3)
+  async fetchDataAndDrawChart() {
+    try {
+      const data = await fetchExpenseCost();
+      this.drawChart(data);
+    } catch (error) {
+      console.error('Error fetching expense cost:', error);
     }
-    render() {
-        return <div id={"#" + this.props.id}></div>
-    }
+  }
+
+  drawChart(data) {
+    const svg = d3
+      .select("#" + this.props.id)
+      .append("svg")
+      .attr("width", 900)
+      .attr("height", 500);
+
+    svg.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => i * 70)
+      .attr("y", (d, i) => 300 - 10 * d)
+      .attr("width", 65)
+      .attr("height", (d, i) => d * 10)
+      .attr("fill", "blue");
+
+    svg.selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .text((d) => d)
+      .attr("x", (d, i) => i * 70)
+      .attr("y", (d, i) => 300 - 10 * d - 3);
+  }
+
+  render() {
+    return <div id={this.props.id}></div>;
+  }
 }
+
 export default BarChart;

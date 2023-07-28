@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "baseUrl": "FetchUser.js",
+      "paths": {
+        "@api/*": ["./api/*"]
+      }
+    }
+  }

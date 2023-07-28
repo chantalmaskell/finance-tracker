@@ -1,0 +1,46 @@
+/* dark-mode.css */
+
+/* Background color */
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    background-image: url('./components/Guinea-pig-funny.jpg');
+    background-repeat: no-repeat;
+    background-size: 10%;
+    background-position: top right;
+    margin: 20%;
+    margin-top: 2%;
+  }
+  
+  h1,
+  h3 {
+    color: #ffffff;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .row,
+  .col-sm {
+    background-color: #292929;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  /* Style the buttons */
+  .btn-primary,
+  .btn-secondary {
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+  
+  /* Remove bootstrap's default styling for input and select elements */
+  input.form-control,
+  select.form-control {
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+  

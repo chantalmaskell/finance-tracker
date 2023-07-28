@@ -1,0 +1,30 @@
+.list-group ul {
+    background-color: rgba(0, 255, 255, 0);
+    color: blue;
+}
+
+ul h2 {
+    color: blue;
+}
+
+.li {
+    font: red;
+}
+
+.badge {
+    background-color: rgb(78, 125, 255);
+}
+
+.list-group-item {
+    background-color: rgba(148, 232, 235, 0.422);
+    border-radius: 5px;
+    margin: 1%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+
+
+.list-group-item:hover {
+  /* Scale up the element on hover */
+  transform: scale(1.05);
+}
